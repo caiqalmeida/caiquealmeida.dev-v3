@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -12,15 +12,33 @@ const GlobalStyles = createGlobalStyle`
   html, body, #__next {
     height: 100%;
   }
-  body {
-    font-family: ${(props) => props.theme.font.family};
-    background-color: ${(props) => props.theme.colors.background_dark};
-    font-size: 16px;
-    color: ${(props) => props.theme.colors.white};
-  }
 
+  ${({ theme }) => css`
+    body {
+      background-color: ${theme.colors.background_dark};
+      color: ${theme.colors.white};
+    }
+    body,
+    input,
+    textarea,
+    select,
+    button {
+      font-family: ${theme.font.family};
+      font-size: 16px;
+    }
+  `}
+
+  button {
+    cursor: pointer;
+    border: 0;
+  }
   a {
+    color: inherit;
     text-decoration: none;
+    cursor: pointer;
+  }
+  img {
+    max-width: 100%;
   }
 
 `
